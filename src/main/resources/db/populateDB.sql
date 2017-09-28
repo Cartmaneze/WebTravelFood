@@ -2,7 +2,15 @@ DELETE FROM meals;
 DELETE FROM meals_with_weight;
 DELETE FROM days;
 DELETE FROM journey;
+DELETE FROM users;
+DELETE FROM user_meals;
 ALTER SEQUENCE global_seq RESTART WITH 100000;
+
+INSERT INTO users (login, password)
+VALUES ('cartmaneze', 'slipknot');
+
+INSERT INTO users (login, password)
+VALUES ('user', 'password');
 
 INSERT INTO meals (name, calories) VALUES
   ('гречка', 330),
@@ -23,17 +31,17 @@ INSERT INTO meals (name, calories) VALUES
   ('кофе', 0),
   ('чай', 0);
 
-INSERT INTO journey (name) VALUES
-  ('journey1'),
-  ('journey2'),
-  ('journey3'),
-  ('journey4'),
-  ('journey5'),
-  ('journey6'),
-  ('journey7'),
-  ('journey8'),
-  ('journey9'),
-  ('journey10');
+-- INSERT INTO journey (name) VALUES
+--   ('journey1'),
+--   ('journey2'),
+--   ('journey3'),
+--   ('journey4'),
+--   ('journey5'),
+--   ('journey6'),
+--   ('journey7'),
+--   ('journey8'),
+--   ('journey9'),
+--   ('journey10');
 
 
 
