@@ -5,7 +5,7 @@
     <title>Travel Food</title>
 </head>
 <body>
-<h3>Проект Travel Food</a></h3>
+<h3>Проект Travel Food</h3>
 <hr>
 <form method="post" action="client">
     <b>Введите количество походных дней</b>

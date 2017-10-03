@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created by Никита on 13.09.2017.
  */
-public class DynamicControllerMeal {
+public class DynamicControllerAnonimMeal {
     private static List<Meal> dinamicMealList = new ArrayList<>();
 
     public static void addList(List<Meal> meals) {

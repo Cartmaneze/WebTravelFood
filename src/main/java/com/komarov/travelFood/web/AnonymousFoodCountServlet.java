@@ -1,6 +1,6 @@
 package com.komarov.travelFood.web;
 
-import com.komarov.travelFood.ClientPool;
+import com.komarov.travelFood.AnonymousClientPool;
 import com.komarov.travelFood.to.Day;
 import com.komarov.travelFood.to.Journey;
 import com.komarov.travelFood.to.MealWithWeight;
@@ -16,11 +16,11 @@ import java.util.Map;
 /**
  * Created by Никита on 20.09.2017.
  */
-public class FoodCountServlet extends HttpServlet {
+public class AnonymousFoodCountServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
 
-        Journey journey = ClientPool.getJourney(request.getRemoteAddr());
+        Journey journey = AnonymousClientPool.getJourney(request.getRemoteAddr());
         int numb = journey.getPeople();
 
         Map<String, Integer> allFood = new HashMap<>();

@@ -7,11 +7,11 @@ import org.springframework.stereotype.Controller;
 import java.util.List;
 
 @Controller
-public class ControllerMeal {
+public class ControllerAnonimMeal {
 
     ServiceMeal serviceMeal;
 
-    public ControllerMeal(ServiceMeal serviceMeal) {
+    public ControllerAnonimMeal(ServiceMeal serviceMeal) {
         this.serviceMeal = serviceMeal;
     }
 
