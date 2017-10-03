@@ -24,7 +24,7 @@
     </thead>
     <c:forEach var="meal" items="${meal}" >
         <tr>
-            <td><a href="meals?choseMeal=${meal.getName()}&choceMealCcal=${meal.getCalories()}&isUpdating=${isUpdating}&updatingMealHashCode=${hashCode}&dayNumber=${dayNumber}&menu=${menu}">${meal.getName()}</a></td>
+            <td><a href="meals?choseMeal=${meal.getName()}&mealCcal=${meal.getCalories()}&isUpdating=${isUpdating}&hashCode=${hashCode}&dayNumber=${dayNumber}&menu=${menu}">${meal.getName()}</a></td>
             <td>${meal.getCalories()}</td>
         </tr>
     </c:forEach>

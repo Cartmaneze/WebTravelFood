@@ -152,19 +152,25 @@ public class AnonymousJourneyServlet {
 
     @GetMapping("/updateMeal")
     public String updateMeal(HttpServletRequest request, Model model) {
-//        request.setAttribute("dayNumber", dayNumber);
-//        request.setAttribute("meal", DynamicControllerAnonimMeal.getDinamicMealList());
-//        request.setAttribute("choseMeal", request.getParameter("name"));
-//        request.setAttribute("choseMealCcal", request.getParameter("calories"));
-//        request.setAttribute("choseMealWeight", request.getParameter("weight"));
-//        request.setAttribute("hashCode", request.getParameter("hashCode"));
-//        request.setAttribute("isUpdating", "true");
-//        request.setAttribute("menu", menu);
-//        request.getRequestDispatcher("meals.jsp").forward(request, response);
+        Journey journey = AnonymousClientPool.getJourney(request.getRemoteAddr());
+        int dayNumber = 0;
+        if (journey.getChosenDay() > 0) {
+            dayNumber = journey.getChosenDay();
+        }
+        String menu = request.getParameter("menu");
 
-        return "redirect:meals";
+        model.addAttribute("dayNumber", dayNumber);
+        model.addAttribute("meal", DynamicControllerAnonimMeal.getDinamicMealList());
+        model.addAttribute("choseMeal", request.getParameter("name"));
+        model.addAttribute("choseMealCcal", request.getParameter("calories"));
+        model.addAttribute("choseMealWeight", request.getParameter("weight"));
+        model.addAttribute("hashCode", request.getParameter("hashCode"));
+        model.addAttribute("isUpdating", "true");
+        model.addAttribute("menu", menu);
+
+        return "redirect:/meals";
     }
-//
+
 //    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //        request.setCharacterEncoding("UTF-8");
 //

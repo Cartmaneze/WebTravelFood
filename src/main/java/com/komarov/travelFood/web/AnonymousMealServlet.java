@@ -24,58 +24,52 @@ public class AnonymousMealServlet extends HttpServlet {
 
     @GetMapping
     public String show(HttpServletRequest request, Model model) {
-//        Journey journey = AnonymousClientPool.getJourney(request.getRemoteAddr());
-//
-//        int dayNumber = Integer.parseInt(request.getParameter("dayNumber"));
-//        String menu = request.getParameter("menu");
-//
-//        model.addAttribute("meal", DynamicControllerAnonimMeal.getDinamicMealList());
-//        model.addAttribute("dayNumber", dayNumber);
-//        model.addAttribute("menu", menu);
-
         Journey journey = AnonymousClientPool.getJourney(request.getRemoteAddr());
 
         String choseMeal = request.getParameter("choseMeal");
-        String choseMealCcal = request.getParameter("choceMealCcal");
-        String updatingMealHashCode = request.getParameter("updatingMealHashCode");
+        String choseMealCcal = request.getParameter("choseMealCcal");
+        String mealCcal = request.getParameter("mealCcal");
+        String updatingMealHashCode = request.getParameter("hashCode");
         String isUpdating = request.getParameter("isUpdating");
-        int dayNumber = Integer.parseInt(request.getParameter("dayNumber"));
         String menu = request.getParameter("menu");
+        String weight = request.getParameter("choseMealWeight");
 
         request.setAttribute("meal", DynamicControllerAnonimMeal.getDinamicMealList());
+        request.setAttribute("menu", menu);
 
         if (choseMeal != null) {
-            request.setAttribute("dayNumber", dayNumber);
-
+            request.setAttribute("dayNumber", journey.getChosenDay()+1);
             request.setAttribute("choseMeal", choseMeal);
-            request.setAttribute("choseMealCcal", choseMealCcal);
+            request.setAttribute("choseMealCcal", mealCcal);
             request.setAttribute("choseMealWeight", 0);
-            if (isUpdating.equals("true")) {
-                request.setAttribute("isUpdating", isUpdating);
-                request.setAttribute("hashCode", updatingMealHashCode);
+        }
+        if (isUpdating!=null && isUpdating.equals("true")) {
+            request.setAttribute("isUpdating", isUpdating);
+            request.setAttribute("hashCode", updatingMealHashCode);
+            if (mealCcal == null) {
+                request.setAttribute("choseMealCcal", choseMealCcal);
             }
-            request.setAttribute("menu", menu);
-//            request.getRequestDispatcher("meals.jsp").forward(request, response);
+            request.setAttribute("choseMealWeight", weight);
         }
 
         return "meals";
     }
 
-    @GetMapping(value = "/clickMeal")
-    public String clickMeal(HttpServletRequest request, Model model) {
+//    @GetMapping(value = "/clickMeal")
+//    public String clickMeal(HttpServletRequest request, Model model) {
+//
+//        String choseMeal = request.getParameter("choseMeal");
+//        String choseMealCcal = request.getParameter("choceMealCcal");
+//
+//        model.addAttribute("meal", DynamicControllerAnonimMeal.getDinamicMealList());
+//        model.addAttribute("choseMeal", choseMeal);
+//        model.addAttribute("choseMealCcal", choseMealCcal);
+//        model.addAttribute("choseMealWeight", 0);
+//
+//        return "redirect:/meals";
+//    }
 
-        String choseMeal = request.getParameter("choseMeal");
-        String choseMealCcal = request.getParameter("choceMealCcal");
-
-        model.addAttribute("meal", DynamicControllerAnonimMeal.getDinamicMealList());
-        model.addAttribute("choseMeal", choseMeal);
-        model.addAttribute("choseMealCcal", choseMealCcal);
-        model.addAttribute("choseMealWeight", 0);
-
-        return "redirect:/meals";
-    }
-
-    @PostMapping(value = "/clickMeal")
+    @PostMapping
     public String clickdMeal(HttpServletRequest request, Model model) {
         Journey journey = AnonymousClientPool.getJourney(request.getRemoteAddr());
         int dayNumber = 0;
