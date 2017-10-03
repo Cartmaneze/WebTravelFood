@@ -24,14 +24,39 @@ public class AnonymousMealServlet extends HttpServlet {
 
     @GetMapping
     public String show(HttpServletRequest request, Model model) {
+//        Journey journey = AnonymousClientPool.getJourney(request.getRemoteAddr());
+//
+//        int dayNumber = Integer.parseInt(request.getParameter("dayNumber"));
+//        String menu = request.getParameter("menu");
+//
+//        model.addAttribute("meal", DynamicControllerAnonimMeal.getDinamicMealList());
+//        model.addAttribute("dayNumber", dayNumber);
+//        model.addAttribute("menu", menu);
+
         Journey journey = AnonymousClientPool.getJourney(request.getRemoteAddr());
 
+        String choseMeal = request.getParameter("choseMeal");
+        String choseMealCcal = request.getParameter("choceMealCcal");
+        String updatingMealHashCode = request.getParameter("updatingMealHashCode");
+        String isUpdating = request.getParameter("isUpdating");
         int dayNumber = Integer.parseInt(request.getParameter("dayNumber"));
         String menu = request.getParameter("menu");
 
         request.setAttribute("meal", DynamicControllerAnonimMeal.getDinamicMealList());
-        request.setAttribute("dayNumber", dayNumber);
-        request.setAttribute("menu", menu);
+
+        if (choseMeal != null) {
+            request.setAttribute("dayNumber", dayNumber);
+
+            request.setAttribute("choseMeal", choseMeal);
+            request.setAttribute("choseMealCcal", choseMealCcal);
+            request.setAttribute("choseMealWeight", 0);
+            if (isUpdating.equals("true")) {
+                request.setAttribute("isUpdating", isUpdating);
+                request.setAttribute("hashCode", updatingMealHashCode);
+            }
+            request.setAttribute("menu", menu);
+//            request.getRequestDispatcher("meals.jsp").forward(request, response);
+        }
 
         return "meals";
     }
@@ -42,12 +67,12 @@ public class AnonymousMealServlet extends HttpServlet {
         String choseMeal = request.getParameter("choseMeal");
         String choseMealCcal = request.getParameter("choceMealCcal");
 
-        request.setAttribute("meal", DynamicControllerAnonimMeal.getDinamicMealList());
-        request.setAttribute("choseMeal", choseMeal);
-        request.setAttribute("choseMealCcal", choseMealCcal);
-        request.setAttribute("choseMealWeight", 0);
+        model.addAttribute("meal", DynamicControllerAnonimMeal.getDinamicMealList());
+        model.addAttribute("choseMeal", choseMeal);
+        model.addAttribute("choseMealCcal", choseMealCcal);
+        model.addAttribute("choseMealWeight", 0);
 
-        return "meals";
+        return "redirect:/meals";
     }
 
     @PostMapping(value = "/clickMeal")
@@ -140,13 +165,13 @@ public class AnonymousMealServlet extends HttpServlet {
         dayAllCalories = String.valueOf(dayAllCaloriesCount);
         dayAllWeight = String.valueOf(dayAllWeightCount);
 
-        request.setAttribute("dayBreakfast", journey.getDayList().get(dayNumber).getBreakfast());
-        request.setAttribute("dayDinner", journey.getDayList().get(dayNumber).getDinner());
-        request.setAttribute("daySupper", journey.getDayList().get(dayNumber).getSupper());
-        request.setAttribute("daySnack", journey.getDayList().get(dayNumber).getSnacks());
-        request.setAttribute("journeyDayList", journey.getDayList());
-        request.setAttribute("dayAllCalories", dayAllCalories);
-        request.setAttribute("dayAllWeight", dayAllWeight);
+        model.addAttribute("dayBreakfast", journey.getDayList().get(dayNumber).getBreakfast());
+        model.addAttribute("dayDinner", journey.getDayList().get(dayNumber).getDinner());
+        model.addAttribute("daySupper", journey.getDayList().get(dayNumber).getSupper());
+        model.addAttribute("daySnack", journey.getDayList().get(dayNumber).getSnacks());
+        model.addAttribute("journeyDayList", journey.getDayList());
+        model.addAttribute("dayAllCalories", dayAllCalories);
+        model.addAttribute("dayAllWeight", dayAllWeight);
 
         return "redirect:/journeyDays";
     }

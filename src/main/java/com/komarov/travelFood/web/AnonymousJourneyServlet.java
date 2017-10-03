@@ -144,8 +144,8 @@ public class AnonymousJourneyServlet {
 
         String menu = request.getParameter("menu");
 
-        request.setAttribute("dayNumber", dayNumber);
-        request.setAttribute("menu", menu);
+        model.addAttribute("dayNumber", dayNumber);
+        model.addAttribute("menu", menu);
 
         return "redirect:/meals";
     }
@@ -162,7 +162,7 @@ public class AnonymousJourneyServlet {
 //        request.setAttribute("menu", menu);
 //        request.getRequestDispatcher("meals.jsp").forward(request, response);
 
-        return "redirect:/meals";
+        return "redirect:meals";
     }
 //
 //    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

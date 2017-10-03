@@ -41,7 +41,6 @@
     </style>
 </head>
 <body>
-<p><a href="index.jsp">Назад</a></p>
 <h2>Еда в поход</h2>
 <button type="button"><a href="allFood">Посчитать вес всей еды</a></button>
 <br>
