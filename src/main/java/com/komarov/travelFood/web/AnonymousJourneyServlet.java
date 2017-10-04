@@ -16,6 +16,7 @@ import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by Никита on 03.09.2017.
@@ -169,5 +170,57 @@ public class AnonymousJourneyServlet {
         model.addAttribute("menu", menu);
 
         return "redirect:/meals";
+    }
+
+    @GetMapping("/copyDayMenu")
+    public String copyDayMenu(HttpServletRequest request, Model model) {
+        Journey journey = AnonymousClientPool.getJourney(request.getRemoteAddr());
+        int dayNumber = 0;
+        if (journey.getChosenDay() > 0) {
+            dayNumber = journey.getChosenDay();
+        }
+
+        List<MealWithWeight> breakfastCopyList = journey.getDayList().get(dayNumber).getBreakfast().stream().collect(Collectors.toList());
+        journey.getCopyDayMenu().put("breakfast", breakfastCopyList);
+
+        List<MealWithWeight> dinnerCopyList = journey.getDayList().get(dayNumber).getDinner().stream().collect(Collectors.toList());
+        journey.getCopyDayMenu().put("dinner", dinnerCopyList);
+
+        List<MealWithWeight> supperCopyList = journey.getDayList().get(dayNumber).getSupper().stream().collect(Collectors.toList());
+        journey.getCopyDayMenu().put("supper", supperCopyList);
+
+        List<MealWithWeight> snacksCopyList = journey.getDayList().get(dayNumber).getSnacks().stream().collect(Collectors.toList());
+        journey.getCopyDayMenu().put("snacks", snacksCopyList);
+
+        return "redirect:/journeyDays";
+    }
+
+    @GetMapping("/pasteDayMenu")
+    public String pasteDayMenu(HttpServletRequest request, Model model) {
+        Journey journey = AnonymousClientPool.getJourney(request.getRemoteAddr());
+        int dayNumber = 0;
+        if (journey.getChosenDay() > 0) {
+            dayNumber = journey.getChosenDay();
+        }
+        if (!journey.getCopyDayMenu().isEmpty()) {
+            journey.getDayList().get(dayNumber).getBreakfast().clear();
+            journey.getDayList().get(dayNumber).getDinner().clear();
+            journey.getDayList().get(dayNumber).getSupper().clear();
+            journey.getDayList().get(dayNumber).getSnacks().clear();
+
+            for (MealWithWeight m : journey.getCopyDayMenu().get("breakfast")) {
+                journey.getDayList().get(dayNumber).getBreakfast().add(m);
+            }
+            for (MealWithWeight m : journey.getCopyDayMenu().get("dinner")) {
+                journey.getDayList().get(dayNumber).getDinner().add(m);
+            }
+            for (MealWithWeight m : journey.getCopyDayMenu().get("supper")) {
+                journey.getDayList().get(dayNumber).getSupper().add(m);
+            }
+            for (MealWithWeight m : journey.getCopyDayMenu().get("snacks")) {
+                journey.getDayList().get(dayNumber).getSnacks().add(m);
+            }
+        }
+        return "redirect:/journeyDays";
     }
 }
