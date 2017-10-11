@@ -1,9 +1,9 @@
-package com.komarov.travelFood.web;
+package com.komarov.travelFood.web.anonimousMeals;
 
 import com.komarov.travelFood.AnonymousClientPool;
-import com.komarov.travelFood.to.Day;
-import com.komarov.travelFood.to.Journey;
-import com.komarov.travelFood.to.MealWithWeight;
+import com.komarov.travelFood.model.anonimous.AnonimDay;
+import com.komarov.travelFood.model.anonimous.AnonimJourney;
+import com.komarov.travelFood.model.anonimous.AnonimMealWithWeight;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,14 +21,14 @@ public class AnonymousFoodCountServlet {
 
     @GetMapping
     public String showAllFoodCount(HttpServletRequest request) {
-        Journey journey = AnonymousClientPool.getJourney(request.getRemoteAddr());
+        AnonimJourney journey = AnonymousClientPool.getJourney(request.getRemoteAddr());
         int numb = journey.getPeople();
 
         Map<String, Integer> allFood = new HashMap<>();
         int allWeight = 0;
 
-        for (Day day : journey.getDayList()) {
-            for (MealWithWeight m : day.getBreakfast()) {
+        for (AnonimDay day : journey.getDayList()) {
+            for (AnonimMealWithWeight m : day.getBreakfast()) {
                 if (allFood.containsKey(m.getMeal().getName())) {
                     allFood.put(m.getMeal().getName(), allFood.get(m.getMeal().getName()) + m.getWeight() * numb);
                 } else {
@@ -36,7 +36,7 @@ public class AnonymousFoodCountServlet {
                 }
                 allWeight += m.getWeight() * numb;
             }
-            for (MealWithWeight m : day.getDinner()) {
+            for (AnonimMealWithWeight m : day.getDinner()) {
                 if (allFood.containsKey(m.getMeal().getName())) {
                     allFood.put(m.getMeal().getName(), allFood.get(m.getMeal().getName()) + m.getWeight() * numb);
                 } else {
@@ -44,7 +44,7 @@ public class AnonymousFoodCountServlet {
                 }
                 allWeight += m.getWeight() * numb;
             }
-            for (MealWithWeight m : day.getSupper()) {
+            for (AnonimMealWithWeight m : day.getSupper()) {
                 if (allFood.containsKey(m.getMeal().getName())) {
                     allFood.put(m.getMeal().getName(), allFood.get(m.getMeal().getName()) + m.getWeight() * numb);
                 } else {
@@ -52,7 +52,7 @@ public class AnonymousFoodCountServlet {
                 }
                 allWeight += m.getWeight() * numb;
             }
-            for (MealWithWeight m : day.getSnacks()) {
+            for (AnonimMealWithWeight m : day.getSnacks()) {
                 if (allFood.containsKey(m.getMeal().getName())) {
                     allFood.put(m.getMeal().getName(), allFood.get(m.getMeal().getName()) + m.getWeight() * numb);
                 } else {

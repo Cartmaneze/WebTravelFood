@@ -1,4 +1,4 @@
-package com.komarov.travelFood.controller;
+package com.komarov.travelFood.controller.anonimous;
 
 import com.komarov.travelFood.model.Meal;
 import com.komarov.travelFood.service.ServiceMeal;

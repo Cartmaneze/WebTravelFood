@@ -13,26 +13,14 @@ import javax.persistence.*;
 })
 @Entity
 @Table(name = "MEALS")
-public class Meal extends BaseEntity {
+public class Meal extends NamedEntity {
     public static final String DELETE = "Meal.delete";
     public static final String GET_ALL = "Meal.getAll";
-
-    @Column(name = "name")
-    @NotBlank
-    private String name;
 
     @Column(name = "calories")
     private int calories;
 
     public Meal() {
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public int getCalories() {

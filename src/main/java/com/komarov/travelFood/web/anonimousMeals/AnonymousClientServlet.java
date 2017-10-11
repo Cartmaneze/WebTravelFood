@@ -1,7 +1,7 @@
-package com.komarov.travelFood.web;
+package com.komarov.travelFood.web.anonimousMeals;
 
 import com.komarov.travelFood.AnonymousClientPool;
-import com.komarov.travelFood.to.Journey;
+import com.komarov.travelFood.model.anonimous.AnonimJourney;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,7 +42,7 @@ public class AnonymousClientServlet {
 
 
     public void createNewJourney(String clientIp, int dayNumber, int peopleNumber) {
-        Journey newJourney = new Journey(dayNumber, peopleNumber);
+        AnonimJourney newJourney = new AnonimJourney(dayNumber, peopleNumber);
         AnonymousClientPool.setInClientPool(clientIp, newJourney);
     }
 }

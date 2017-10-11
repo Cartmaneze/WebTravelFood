@@ -16,9 +16,9 @@ CREATE TABLE meals (
 
 CREATE TABLE users
 (
-  id               INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
-  login            VARCHAR                  NOT NULL,
-  password         VARCHAR                  NOT NULL
+  id          INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
+  login       VARCHAR                  NOT NULL,
+  password    VARCHAR                  NOT NULL
 );
 CREATE UNIQUE INDEX users_unique_email_idx ON users (login);
 
@@ -26,22 +26,22 @@ CREATE TABLE user_meals (
   id          INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
   name        VARCHAR NOT NULL,
   calories    INT NOT NULL,
-  user_id  INTEGER NOT NULL,
+  user_id     INTEGER NOT NULL,
   FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
 );
 
 CREATE TABLE journey
 (
-  id         INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
-  name       VARCHAR NOT NULL,
-  user_id  INTEGER NOT NULL,
+  id          INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
+  name        VARCHAR NOT NULL,
+  user_id     INTEGER NOT NULL,
   FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
 );
 
 CREATE TABLE days
 (
-  id         INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
-  name       VARCHAR NOT NULL,
+  id          INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
+  name        VARCHAR NOT NULL,
   journey_id  INTEGER NOT NULL,
   FOREIGN KEY (journey_id) REFERENCES journey (id) ON DELETE CASCADE
 );
@@ -53,7 +53,7 @@ CREATE TABLE meals_with_weight (
   day_id      INTEGER NOT NULL,
   meal_id     INTEGER NOT NULL,
   FOREIGN KEY (day_id) REFERENCES days (id) ON DELETE CASCADE,
-  FOREIGN KEY (meal_id) REFERENCES meals (id) ON DELETE CASCADE
+  FOREIGN KEY (meal_id) REFERENCES user_meals (id) ON DELETE CASCADE
 );
 
 

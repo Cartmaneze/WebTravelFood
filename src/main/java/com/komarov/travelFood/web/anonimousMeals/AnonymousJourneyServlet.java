@@ -1,10 +1,10 @@
-package com.komarov.travelFood.web;
+package com.komarov.travelFood.web.anonimousMeals;
 
 import com.komarov.travelFood.AnonymousClientPool;
-import com.komarov.travelFood.controller.ControllerAnonimMeal;
-import com.komarov.travelFood.controller.DynamicControllerAnonimMeal;
-import com.komarov.travelFood.to.Journey;
-import com.komarov.travelFood.to.MealWithWeight;
+import com.komarov.travelFood.controller.anonimous.ControllerAnonimMeal;
+import com.komarov.travelFood.controller.anonimous.DynamicControllerAnonimMeal;
+import com.komarov.travelFood.model.anonimous.AnonimJourney;
+import com.komarov.travelFood.model.anonimous.AnonimMealWithWeight;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.stereotype.Controller;
@@ -39,7 +39,7 @@ public class AnonymousJourneyServlet {
     @GetMapping
     public String showJourneyMeals(HttpServletRequest request, Model model) {
 
-        Journey journey = AnonymousClientPool.getJourney(request.getRemoteAddr());
+        AnonimJourney journey = AnonymousClientPool.getJourney(request.getRemoteAddr());
 
         int dayNumber = 0;
         if (journey.getChosenDay() > 0) {
@@ -51,19 +51,19 @@ public class AnonymousJourneyServlet {
 
         double dayAllCaloriesCount = 0;
         int dayAllWeightCount = 0;
-        for (MealWithWeight meals : journey.getDayList().get(dayNumber).getBreakfast()) {
+        for (AnonimMealWithWeight meals : journey.getDayList().get(dayNumber).getBreakfast()) {
             dayAllWeightCount += meals.getWeight();
             dayAllCaloriesCount += meals.getMeal().getCalories() * meals.getWeight() / 100;
         }
-        for (MealWithWeight meals : journey.getDayList().get(dayNumber).getDinner()) {
+        for (AnonimMealWithWeight meals : journey.getDayList().get(dayNumber).getDinner()) {
             dayAllWeightCount += meals.getWeight();
             dayAllCaloriesCount += meals.getMeal().getCalories() * meals.getWeight() / 100;
         }
-        for (MealWithWeight meals : journey.getDayList().get(dayNumber).getSupper()) {
+        for (AnonimMealWithWeight meals : journey.getDayList().get(dayNumber).getSupper()) {
             dayAllWeightCount += meals.getWeight();
             dayAllCaloriesCount += meals.getMeal().getCalories() * meals.getWeight() / 100;
         }
-        for (MealWithWeight meals : journey.getDayList().get(dayNumber).getSnacks()) {
+        for (AnonimMealWithWeight meals : journey.getDayList().get(dayNumber).getSnacks()) {
             dayAllWeightCount += meals.getWeight();
             dayAllCaloriesCount += meals.getMeal().getCalories() * meals.getWeight() / 100;
         }
@@ -85,7 +85,7 @@ public class AnonymousJourneyServlet {
 
     @GetMapping("/newDayNumber")
     public String newDayNumber(HttpServletRequest request) {
-        Journey journey = AnonymousClientPool.getJourney(request.getRemoteAddr());
+        AnonimJourney journey = AnonymousClientPool.getJourney(request.getRemoteAddr());
         int dayNumber = 0;
         if (journey.getChosenDay() > 0) {
             dayNumber = journey.getChosenDay();
@@ -103,7 +103,7 @@ public class AnonymousJourneyServlet {
 
     @GetMapping("/deleteMeal")
     public String delete(HttpServletRequest request) {
-        Journey journey = AnonymousClientPool.getJourney(request.getRemoteAddr());
+        AnonimJourney journey = AnonymousClientPool.getJourney(request.getRemoteAddr());
         int dayNumber = 0;
         if (journey.getChosenDay() > 0) {
             dayNumber = journey.getChosenDay();
@@ -112,8 +112,8 @@ public class AnonymousJourneyServlet {
         String menu = request.getParameter("menu");
 
         int hashCode = Integer.parseInt(request.getParameter("hashCode"));
-        List<MealWithWeight> mealWithWeights = new ArrayList<>();
-        MealWithWeight mealToDelete = null;
+        List<AnonimMealWithWeight> mealWithWeights = new ArrayList<>();
+        AnonimMealWithWeight mealToDelete = null;
         if (menu.equals("breakfast")) {
             mealWithWeights = journey.getDayList().get(dayNumber).getBreakfast();
         } else if (menu.equals("dinner")) {
@@ -124,7 +124,7 @@ public class AnonymousJourneyServlet {
             mealWithWeights = journey.getDayList().get(dayNumber).getSnacks();
         }
 
-        for (MealWithWeight m : mealWithWeights) {
+        for (AnonimMealWithWeight m : mealWithWeights) {
             if (m.hashCode() == hashCode) {
                         mealToDelete = m;
             }
@@ -137,7 +137,7 @@ public class AnonymousJourneyServlet {
 
     @GetMapping("/newMeal")
     public String newMeal(HttpServletRequest request, Model model) {
-        Journey journey = AnonymousClientPool.getJourney(request.getRemoteAddr());
+        AnonimJourney journey = AnonymousClientPool.getJourney(request.getRemoteAddr());
         int dayNumber = 0;
         if (journey.getChosenDay() > 0) {
             dayNumber = journey.getChosenDay();
@@ -153,7 +153,7 @@ public class AnonymousJourneyServlet {
 
     @GetMapping("/updateMeal")
     public String updateMeal(HttpServletRequest request, Model model) {
-        Journey journey = AnonymousClientPool.getJourney(request.getRemoteAddr());
+        AnonimJourney journey = AnonymousClientPool.getJourney(request.getRemoteAddr());
         int dayNumber = 0;
         if (journey.getChosenDay() > 0) {
             dayNumber = journey.getChosenDay();
@@ -174,22 +174,22 @@ public class AnonymousJourneyServlet {
 
     @GetMapping("/copyDayMenu")
     public String copyDayMenu(HttpServletRequest request, Model model) {
-        Journey journey = AnonymousClientPool.getJourney(request.getRemoteAddr());
+        AnonimJourney journey = AnonymousClientPool.getJourney(request.getRemoteAddr());
         int dayNumber = 0;
         if (journey.getChosenDay() > 0) {
             dayNumber = journey.getChosenDay();
         }
 
-        List<MealWithWeight> breakfastCopyList = journey.getDayList().get(dayNumber).getBreakfast().stream().collect(Collectors.toList());
+        List<AnonimMealWithWeight> breakfastCopyList = journey.getDayList().get(dayNumber).getBreakfast().stream().collect(Collectors.toList());
         journey.getCopyDayMenu().put("breakfast", breakfastCopyList);
 
-        List<MealWithWeight> dinnerCopyList = journey.getDayList().get(dayNumber).getDinner().stream().collect(Collectors.toList());
+        List<AnonimMealWithWeight> dinnerCopyList = journey.getDayList().get(dayNumber).getDinner().stream().collect(Collectors.toList());
         journey.getCopyDayMenu().put("dinner", dinnerCopyList);
 
-        List<MealWithWeight> supperCopyList = journey.getDayList().get(dayNumber).getSupper().stream().collect(Collectors.toList());
+        List<AnonimMealWithWeight> supperCopyList = journey.getDayList().get(dayNumber).getSupper().stream().collect(Collectors.toList());
         journey.getCopyDayMenu().put("supper", supperCopyList);
 
-        List<MealWithWeight> snacksCopyList = journey.getDayList().get(dayNumber).getSnacks().stream().collect(Collectors.toList());
+        List<AnonimMealWithWeight> snacksCopyList = journey.getDayList().get(dayNumber).getSnacks().stream().collect(Collectors.toList());
         journey.getCopyDayMenu().put("snacks", snacksCopyList);
 
         return "redirect:/journeyDays";
@@ -197,7 +197,7 @@ public class AnonymousJourneyServlet {
 
     @GetMapping("/pasteDayMenu")
     public String pasteDayMenu(HttpServletRequest request, Model model) {
-        Journey journey = AnonymousClientPool.getJourney(request.getRemoteAddr());
+        AnonimJourney journey = AnonymousClientPool.getJourney(request.getRemoteAddr());
         int dayNumber = 0;
         if (journey.getChosenDay() > 0) {
             dayNumber = journey.getChosenDay();
@@ -208,16 +208,16 @@ public class AnonymousJourneyServlet {
             journey.getDayList().get(dayNumber).getSupper().clear();
             journey.getDayList().get(dayNumber).getSnacks().clear();
 
-            for (MealWithWeight m : journey.getCopyDayMenu().get("breakfast")) {
+            for (AnonimMealWithWeight m : journey.getCopyDayMenu().get("breakfast")) {
                 journey.getDayList().get(dayNumber).getBreakfast().add(m);
             }
-            for (MealWithWeight m : journey.getCopyDayMenu().get("dinner")) {
+            for (AnonimMealWithWeight m : journey.getCopyDayMenu().get("dinner")) {
                 journey.getDayList().get(dayNumber).getDinner().add(m);
             }
-            for (MealWithWeight m : journey.getCopyDayMenu().get("supper")) {
+            for (AnonimMealWithWeight m : journey.getCopyDayMenu().get("supper")) {
                 journey.getDayList().get(dayNumber).getSupper().add(m);
             }
-            for (MealWithWeight m : journey.getCopyDayMenu().get("snacks")) {
+            for (AnonimMealWithWeight m : journey.getCopyDayMenu().get("snacks")) {
                 journey.getDayList().get(dayNumber).getSnacks().add(m);
             }
         }

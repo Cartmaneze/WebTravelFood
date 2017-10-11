@@ -1,4 +1,4 @@
-package com.komarov.travelFood.to;
+package com.komarov.travelFood.model.anonimous;
 
 import java.util.*;
 
@@ -6,16 +6,16 @@ import java.util.*;
  * Created by Никита on 06.09.2017.
  */
 
-public class Journey {
+public class AnonimJourney {
     int day;
     int people;
     int chosenDay = -1;
 
-    private List<Day> dayList;
+    private List<AnonimDay> dayList;
 
-    private Map<String, List<MealWithWeight>> copyDayMenu;
+    private Map<String, List<AnonimMealWithWeight>> copyDayMenu;
 
-    public Journey(int day, int people) {
+    public AnonimJourney(int day, int people) {
         this.day = day;
         this.people = people;
 
@@ -27,12 +27,12 @@ public class Journey {
         dayList = new ArrayList<>();
 
         for (int i = 0; i < dayCount; i++) {
-            Day day = new Day(i + 1, dayCount);
+            AnonimDay day = new AnonimDay(i + 1, dayCount);
             dayList.add(day);
         }
     }
 
-    public Map<String, List<MealWithWeight>> getCopyDayMenu() {
+    public Map<String, List<AnonimMealWithWeight>> getCopyDayMenu() {
         return copyDayMenu;
     }
 
@@ -44,7 +44,7 @@ public class Journey {
         return day;
     }
 
-    public List<Day> getDayList() {
+    public List<AnonimDay> getDayList() {
         return dayList;
     }
 
