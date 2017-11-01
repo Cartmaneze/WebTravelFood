@@ -1,7 +1,7 @@
 package com.komarov.travelFood.controller.anonimous;
 
 import com.komarov.travelFood.model.Meal;
-import com.komarov.travelFood.service.ServiceMeal;
+import com.komarov.travelFood.service.impl.ServiceMealImpl;
 import org.springframework.stereotype.Controller;
 
 import java.util.List;
@@ -9,9 +9,9 @@ import java.util.List;
 @Controller
 public class ControllerAnonimMeal {
 
-    ServiceMeal serviceMeal;
+    ServiceMealImpl serviceMeal;
 
-    public ControllerAnonimMeal(ServiceMeal serviceMeal) {
+    public ControllerAnonimMeal(ServiceMealImpl serviceMeal) {
         this.serviceMeal = serviceMeal;
     }
 

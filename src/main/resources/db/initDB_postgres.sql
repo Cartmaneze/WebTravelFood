@@ -17,8 +17,8 @@ CREATE TABLE meals (
 CREATE TABLE users
 (
   id          INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
-  login       VARCHAR                  NOT NULL,
-  password    VARCHAR                  NOT NULL
+  login       VARCHAR NOT NULL,
+  password    VARCHAR NOT NULL
 );
 CREATE UNIQUE INDEX users_unique_email_idx ON users (login);
 
@@ -48,9 +48,9 @@ CREATE TABLE days
 
 CREATE TABLE meals_with_weight (
   id          INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
-  id_table    INT NOT NULL,
   weight      INT NOT NULL,
   day_id      INTEGER NOT NULL,
+  menu_name   VARCHAR NOT NULL,
   meal_id     INTEGER NOT NULL,
   FOREIGN KEY (day_id) REFERENCES days (id) ON DELETE CASCADE,
   FOREIGN KEY (meal_id) REFERENCES user_meals (id) ON DELETE CASCADE

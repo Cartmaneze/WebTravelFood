@@ -20,12 +20,20 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     @Transactional
-    public User save(User meal) {
-        return null;
+    public User save(User user) {
+        if (!user.isNew() && get(user.getId()) == null) {
+            return null;
+        }
+        if (user.isNew()) {
+            em.persist(user);
+            return user;
+        } else {
+            return em.merge(user);
+        }
     }
 
     @Override
     public User get(int id) {
-        return null;
+        return em.find(User.class, id);
     }
 }
