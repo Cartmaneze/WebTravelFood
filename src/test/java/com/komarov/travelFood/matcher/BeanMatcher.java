@@ -2,6 +2,7 @@ package com.komarov.travelFood.matcher;
 
 import org.junit.Assert;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -57,6 +58,14 @@ public class BeanMatcher<T> {
 
     public void assertListEquals(List<T> expected, List<T> actual) {
         Assert.assertEquals(wrap(expected), wrap(actual));
+    }
+
+    public void assertIsNull(T expected) {
+        Assert.assertEquals(expected, null);
+    }
+
+    public void assertListIsEmpty(List<T> expected) {
+        Assert.assertEquals(wrap(expected), Collections.EMPTY_LIST);
     }
 
     private Wrapper wrap(T entity) {

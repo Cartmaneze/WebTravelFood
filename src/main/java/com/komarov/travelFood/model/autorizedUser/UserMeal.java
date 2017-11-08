@@ -12,8 +12,8 @@ import javax.validation.constraints.NotNull;
  * Created by Никита on 11.10.2017.
  */
 @NamedQueries({
-        @NamedQuery(name = UserMeal.DELETE, query = "DELETE FROM UserMeal m WHERE m.id=:id"),
-        @NamedQuery(name = UserMeal.GET_ALL, query = "SELECT m FROM UserMeal m")
+        @NamedQuery(name = UserMeal.DELETE, query = "DELETE FROM UserMeal m WHERE m.id=:id AND m.user.id=:userId"),
+        @NamedQuery(name = UserMeal.GET_ALL, query = "SELECT m FROM UserMeal m WHERE m.user.id=:userId")
 })
 @Entity
 @Table(name = "USER_MEALS")
@@ -25,13 +25,19 @@ public class UserMeal extends NamedEntity {
     @Range(min = 10, max = 5000)
     private int calories;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @NotNull
     private User user;
 
     public UserMeal() {
+    }
+
+    public UserMeal(int id, String name, int calories, User user) {
+        super(id, name);
+        this.calories = calories;
+        this.user = user;
     }
 
     public int getCalories() {

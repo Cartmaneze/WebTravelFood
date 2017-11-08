@@ -13,9 +13,10 @@ import javax.validation.constraints.NotNull;
  * Created by Никита on 11.10.2017.
  */
 @NamedQueries({
-        @NamedQuery(name = UserMealWithWeight.DELETE, query = "DELETE FROM UserMealWithWeight m WHERE m.id=:id"),
-        @NamedQuery(name = UserMealWithWeight.GET_ALL, query = "SELECT m FROM UserMealWithWeight m")
+        @NamedQuery(name = UserMealWithWeight.DELETE, query = "DELETE FROM UserMealWithWeight m WHERE m.id=:id AND m.day.id=:dayId"),
+        @NamedQuery(name = UserMealWithWeight.GET_ALL, query = "SELECT m FROM UserMealWithWeight m WHERE m.day.id=:dayId AND m.menuName=:menuName")
 })
+@Entity
 @Table(name = "MEALS_WITH_WEIGHT")
 public class UserMealWithWeight extends BaseEntity {
     public static final String DELETE = "UserMealWithWeight.delete";
@@ -37,16 +38,24 @@ public class UserMealWithWeight extends BaseEntity {
     @JoinColumn(name = "meal_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @NotNull
-    private Meal meal;
+    private UserMeal meal;
 
     public UserMealWithWeight() {
     }
 
-    public Meal getMeal() {
+    public UserMealWithWeight(int id, int weight, String menuName, UserMeal meal, Day day) {
+        super(id);
+        this.weight = weight;
+        this.menuName = menuName;
+        this.meal = meal;
+        this.day = day;
+    }
+
+    public UserMeal getMeal() {
         return meal;
     }
 
-    public void setMeal(Meal meal) {
+    public void setMeal(UserMeal meal) {
         this.meal = meal;
     }
 

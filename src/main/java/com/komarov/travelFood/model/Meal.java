@@ -23,6 +23,12 @@ public class Meal extends NamedEntity {
     public Meal() {
     }
 
+    public Meal(int id, String name, int calories) {
+        this.id = id;
+        this.name = name;
+        this.calories = calories;
+    }
+
     public int getCalories() {
         return calories;
     }

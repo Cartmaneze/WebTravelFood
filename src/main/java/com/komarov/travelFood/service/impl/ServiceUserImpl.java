@@ -20,8 +20,8 @@ public class ServiceUserImpl implements ServiceUser {
     }
 
     @Override
-    public User save(User meal) {
-        return userRepository.save(meal);
+    public User save(User user) {
+        return userRepository.save(user);
     }
 
     @Override
