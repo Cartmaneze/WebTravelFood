@@ -19,7 +19,7 @@ import java.util.List;
  * Created by Никита on 14.09.2017.
  */
 @Controller
-@RequestMapping(value = "/meals")
+@RequestMapping(value = "/anonimous/meals")
 public class AnonymousMealServlet extends HttpServlet {
 
     @GetMapping
@@ -57,7 +57,7 @@ public class AnonymousMealServlet extends HttpServlet {
 
         }
 
-        return "meals";
+        return "anonimous/meals";
     }
 
     @PostMapping
@@ -158,6 +158,6 @@ public class AnonymousMealServlet extends HttpServlet {
         model.addAttribute("dayAllCalories", dayAllCalories);
         model.addAttribute("dayAllWeight", dayAllWeight);
 
-        return "redirect:/journeyDays";
+        return "redirect:/anonimous/journeyDays";
     }
 }

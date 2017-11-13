@@ -37,7 +37,7 @@ public class AnonymousClientServlet {
         String clientIp = request.getRemoteAddr();
         createNewJourney(clientIp, dayNumber, peopleNumber);
 
-        return "redirect:journeyDays";
+        return "redirect:/anonimous/journeyDays";
     }
 
 
