@@ -1,9 +1,9 @@
-package com.komarov.travelFood.web.anonimousMeals;
+package com.komarov.travelFood.web.anonymousMeals;
 
 import com.komarov.travelFood.AnonymousClientPool;
-import com.komarov.travelFood.model.anonimous.AnonimDay;
-import com.komarov.travelFood.model.anonimous.AnonimJourney;
-import com.komarov.travelFood.model.anonimous.AnonimMealWithWeight;
+import com.komarov.travelFood.model.anonymous.AnonimDay;
+import com.komarov.travelFood.model.anonymous.AnonimJourney;
+import com.komarov.travelFood.model.anonymous.AnonimMealWithWeight;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +16,7 @@ import java.util.Map;
  * Created by Никита on 20.09.2017.
  */
 @Controller
-@RequestMapping(value = "/anonimous/allFood")
+@RequestMapping(value = "/anonymous/allFood")
 public class AnonymousFoodCountServlet {
 
     @GetMapping
@@ -66,6 +66,6 @@ public class AnonymousFoodCountServlet {
         request.setAttribute("allFood", allFood);
         request.setAttribute("allWeight", allWeight);
 
-        return "/anonimous/allFood";
+        return "/anonymous/allFood";
     }
 }

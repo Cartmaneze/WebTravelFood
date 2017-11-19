@@ -1,6 +1,6 @@
 package com.komarov.travelFood;
 
-import com.komarov.travelFood.model.anonimous.AnonimJourney;
+import com.komarov.travelFood.model.anonymous.AnonimJourney;
 
 import java.util.HashMap;
 import java.util.Map;

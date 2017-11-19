@@ -9,4 +9,9 @@ public class RootController {
     public String root() {
         return "index";
     }
+
+    @GetMapping("/anonymousEnter")
+    public String anonymEnter() {
+        return "startCounts";
+    }
 }

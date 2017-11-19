@@ -4,6 +4,7 @@
 <html>
 <head>
   <title>Вся еда</title>
+  <link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
 </head>
 <body>
 

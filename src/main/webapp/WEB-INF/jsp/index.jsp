@@ -9,16 +9,14 @@
 <body>
 <h3>Проект Travel Food</h3>
 <hr>
-<form method="post" action="client">
-    <b>Введите количество походных дней</b>
-    <br>
-    <input name="dayNumber" value="1"/>
-    <br>
-    <b>Введите количество человек в походе</b>
-    <br>
-    <input name="peopleNumber" value="1"/>
-    <br>
-    <button type="submit">Select</button>
+
+<form method="get" action="anonymousEnter">
+    <button type="submit">Аноним</button>
 </form>
+
+<form method="get" action="loginEnter">
+    <button type="submit">Войти с логином</button>
+</form>
+
 </body>
 </html>

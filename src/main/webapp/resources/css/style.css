@@ -1,32 +1,37 @@
-dl {
-    background: none repeat scroll 0 0 #FAFAFA;
-    margin: 8px 0;
-    padding: 0;
-}
-
-dt {
+TABLE {
+    border-top: 2px solid #000; /* Линия сверху таблицы */
+    vertical-align: top; /* Выравнивание по верхнему краю ячеек */
     display: inline-block;
-    width: 170px;
 }
-
-dd {
-    display: inline-block;
-    margin-left: 8px;
-    vertical-align: top;
+THEAD {
+    font-weight: bold;
 }
-
-.normal {
-    color: green;
+TD, TH {
+    padding: 5px; /* Поля в ячейках */
+    vertical-align: top; /* Выравнивание по верхнему краю ячеек */
+    valign: top;
 }
-
-.exceeded {
-    color: red;
+TH, CAPTION {
+    text-align: left; /* Выравнивание по левому краю */
+    background: black; /* Цвет фона */
+    color: white; /* Цвет текста */
 }
-
-header, footer {
-    background: none repeat scroll 0 0 #A6C9E2;
-    color: #2E6E9E;
-    font-size: 20px;
-    padding: 5px 20px;
-    margin: 6px 0;
+CAPTION {
+    text-align: center; /* Выравнивание по левому краю */
+}
+.del{
+    background: rosybrown;
+    color: #000000;
+}
+.upd{
+    background: aliceblue;
+    color: #000000;
+}
+.add{
+    background: darkseagreen;
+    color: #000000;
+}
+.day{
+    background: whitesmoke;
+    color: #000000;
 }

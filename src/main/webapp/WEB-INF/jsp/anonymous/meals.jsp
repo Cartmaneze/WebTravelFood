@@ -4,14 +4,7 @@
 <html>
 <head>
     <title>Список еды</title>
-    <style>
-        .normal {
-            color: green;
-        }
-        .exceeded {
-            color: red;
-        }
-    </style>
+    <link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
 </head>
 <body>
 

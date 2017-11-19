@@ -4,49 +4,17 @@
 <html>
 <head>
     <title>Еда в поход</title>
-    <style>
-        TABLE {
-            border-top: 2px solid #000; /* Линия сверху таблицы */
-            vertical-align: top; /* Выравнивание по верхнему краю ячеек */
-        }
-        TD, TH {
-            padding: 5px; /* Поля в ячейках */
-            vertical-align: top; /* Выравнивание по верхнему краю ячеек */
-            valign: top;
-        }
-        TH, CAPTION {
-            text-align: left; /* Выравнивание по левому краю */
-            background: black; /* Цвет фона */
-            color: white; /* Цвет текста */
-        }
-        CAPTION {
-            text-align: center; /* Выравнивание по левому краю */
-        }
-        .del{
-            background: rosybrown;
-            color: #000000;
-        }
-        .upd{
-            background: aliceblue;
-            color: #000000;
-        }
-        .add{
-            background: darkseagreen;
-            color: #000000;
-        }
-        .day{
-            background: whitesmoke;
-            color: #000000;
-        }
-    </style>
+    <link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
 </head>
 <body>
 <h2>Еда в поход</h2>
+<script type="text/javascript" src="resources/js/mealDatatables.js" defer></script>
+
 <button type="button"><a href="allFood">Посчитать вес всей еды</a></button>
 <br>
 <p>День ${dayNumber}</p>
-<table style="display: inline-block;">
-    <thead style="font-weight: bold">
+<table>
+    <thead>
     <caption>Дни</caption>
     <th>№</th>
     </thead>
@@ -57,8 +25,8 @@
     </c:forEach>
 </table>
 
-<table style="display: inline-block;">
-    <thead style="font-weight: bold">
+<table id="datatable">
+    <thead>
     <caption>Завтрак</caption>
     <th>Удал</th>
     <th>Изм</th>
@@ -82,8 +50,8 @@
     </tr>
 </table>
 
-<table style="display: inline-block;">
-    <thead style="font-weight: bold">
+<table>
+    <thead>
     <caption>Обед</caption>
     <th>Удал</th>
     <th>Изм</th>
@@ -107,8 +75,8 @@
     </tr>
 </table>
 
-<table style="display: inline-block;">
-    <thead style="font-weight: bold">
+<table>
+    <thead>
     <caption>Ужин</caption>
     <th>Удал</th>
     <th>Изм</th>
@@ -132,8 +100,8 @@
     </tr>
 </table>
 
-<table style="display: inline-block;">
-    <thead style="font-weight: bold">
+<table>
+    <thead>
     <caption>Перекусы</caption>
     <th>Удал</th>
     <th>Изм</th>

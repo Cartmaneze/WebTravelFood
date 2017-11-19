@@ -1,10 +1,10 @@
-package com.komarov.travelFood.web.anonimousMeals;
+package com.komarov.travelFood.web.anonymousMeals;
 
 import com.komarov.travelFood.AnonymousClientPool;
-import com.komarov.travelFood.controller.anonimous.DynamicControllerAnonimMeal;
+import com.komarov.travelFood.controller.anonymous.DynamicControllerAnonimMeal;
 import com.komarov.travelFood.model.Meal;
-import com.komarov.travelFood.model.anonimous.AnonimJourney;
-import com.komarov.travelFood.model.anonimous.AnonimMealWithWeight;
+import com.komarov.travelFood.model.anonymous.AnonimJourney;
+import com.komarov.travelFood.model.anonymous.AnonimMealWithWeight;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +19,7 @@ import java.util.List;
  * Created by Никита on 14.09.2017.
  */
 @Controller
-@RequestMapping(value = "/anonimous/meals")
+@RequestMapping(value = "/anonymous/meals")
 public class AnonymousMealServlet extends HttpServlet {
 
     @GetMapping
@@ -57,7 +57,7 @@ public class AnonymousMealServlet extends HttpServlet {
 
         }
 
-        return "anonimous/meals";
+        return "anonymous/meals";
     }
 
     @PostMapping
@@ -158,6 +158,6 @@ public class AnonymousMealServlet extends HttpServlet {
         model.addAttribute("dayAllCalories", dayAllCalories);
         model.addAttribute("dayAllWeight", dayAllWeight);
 
-        return "redirect:/anonimous/journeyDays";
+        return "redirect:/anonymous/journeyDays";
     }
 }

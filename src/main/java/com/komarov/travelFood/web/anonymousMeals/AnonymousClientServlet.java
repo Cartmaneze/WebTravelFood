@@ -1,7 +1,7 @@
-package com.komarov.travelFood.web.anonimousMeals;
+package com.komarov.travelFood.web.anonymousMeals;
 
 import com.komarov.travelFood.AnonymousClientPool;
-import com.komarov.travelFood.model.anonimous.AnonimJourney;
+import com.komarov.travelFood.model.anonymous.AnonimJourney;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
  * Created by Никита on 14.09.2017.
  */
 @Controller
-@RequestMapping(value = "/client")
+@RequestMapping(value = "/inputValues")
 public class AnonymousClientServlet {
 
     @PostMapping
@@ -37,9 +37,8 @@ public class AnonymousClientServlet {
         String clientIp = request.getRemoteAddr();
         createNewJourney(clientIp, dayNumber, peopleNumber);
 
-        return "redirect:/anonimous/journeyDays";
+        return "redirect:/anonymous/journeyDays";
     }
-
 
     public void createNewJourney(String clientIp, int dayNumber, int peopleNumber) {
         AnonimJourney newJourney = new AnonimJourney(dayNumber, peopleNumber);

@@ -1,10 +1,10 @@
-package com.komarov.travelFood.web.anonimousMeals;
+package com.komarov.travelFood.web.anonymousMeals;
 
 import com.komarov.travelFood.AnonymousClientPool;
-import com.komarov.travelFood.controller.anonimous.ControllerAnonimMeal;
-import com.komarov.travelFood.controller.anonimous.DynamicControllerAnonimMeal;
-import com.komarov.travelFood.model.anonimous.AnonimJourney;
-import com.komarov.travelFood.model.anonimous.AnonimMealWithWeight;
+import com.komarov.travelFood.controller.anonymous.ControllerAnonimMeal;
+import com.komarov.travelFood.controller.anonymous.DynamicControllerAnonimMeal;
+import com.komarov.travelFood.model.anonymous.AnonimJourney;
+import com.komarov.travelFood.model.anonymous.AnonimMealWithWeight;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.stereotype.Controller;
@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
  */
 
 @Controller
-@RequestMapping(value = "/anonimous/journeyDays")
+@RequestMapping(value = "/anonymous/journeyDays")
 public class AnonymousJourneyServlet {
 
     @Autowired
@@ -80,7 +80,7 @@ public class AnonymousJourneyServlet {
         model.addAttribute("dayAllCalories", dayAllCalories);
         model.addAttribute("dayAllWeight", dayAllWeight);
 
-        return "anonimous/journeyDays";
+        return "anonymous/journeyDays";
     }
 
     @GetMapping("/newDayNumber")
@@ -98,7 +98,7 @@ public class AnonymousJourneyServlet {
             dayNumber = Integer.parseInt(nextDay) - 1;
         }
 
-        return "redirect:/anonimous/journeyDays";
+        return "redirect:/anonymous/journeyDays";
     }
 
     @GetMapping("/deleteMeal")
@@ -132,7 +132,7 @@ public class AnonymousJourneyServlet {
 
         mealWithWeights.remove(mealToDelete);
 
-        return "redirect:/anonimous/journeyDays";
+        return "redirect:/anonymous/journeyDays";
     }
 
     @GetMapping("/newMeal")
@@ -148,7 +148,7 @@ public class AnonymousJourneyServlet {
         model.addAttribute("dayNumber", dayNumber);
         model.addAttribute("menu", menu);
 
-        return "redirect:/anonimous/meals";
+        return "redirect:/anonymous/meals";
     }
 
     @GetMapping("/updateMeal")
@@ -169,7 +169,7 @@ public class AnonymousJourneyServlet {
         model.addAttribute("isUpdating", "true");
         model.addAttribute("menu", menu);
 
-        return "redirect:/anonimous/meals";
+        return "redirect:/anonymous/meals";
     }
 
     @GetMapping("/copyDayMenu")
@@ -192,7 +192,7 @@ public class AnonymousJourneyServlet {
         List<AnonimMealWithWeight> snacksCopyList = journey.getDayList().get(dayNumber).getSnacks().stream().collect(Collectors.toList());
         journey.getCopyDayMenu().put("snacks", snacksCopyList);
 
-        return "redirect:/anonimous/journeyDays";
+        return "redirect:/anonymous/journeyDays";
     }
 
     @GetMapping("/pasteDayMenu")
@@ -221,6 +221,6 @@ public class AnonymousJourneyServlet {
                 journey.getDayList().get(dayNumber).getSnacks().add(m);
             }
         }
-        return "redirect:/anonimous/journeyDays";
+        return "redirect:/anonymous/journeyDays";
     }
 }
