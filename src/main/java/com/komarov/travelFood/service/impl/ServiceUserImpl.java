@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 /**
  * Created by Никита on 01.11.2017.
  */
-@Service
+@Service("serviceUser")
 public class ServiceUserImpl implements ServiceUser {
 
     @Autowired
@@ -27,5 +27,15 @@ public class ServiceUserImpl implements ServiceUser {
     @Override
     public User get(int id) {
         return userRepository.get(id);
+    }
+
+    @Override
+    public User getByLoginPassword(String login, String password) {
+        return userRepository.getByLoginPassword(login, password);
+    }
+
+    @Override
+    public User getByLogin(String login) {
+        return userRepository.getByLogin(login);
     }
 }

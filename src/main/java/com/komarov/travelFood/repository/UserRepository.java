@@ -9,4 +9,8 @@ public interface UserRepository {
     User save(User meal);
 
     User get(int id);
+
+    User getByLoginPassword(String login, String password);
+
+    User getByLogin(String login);
 }

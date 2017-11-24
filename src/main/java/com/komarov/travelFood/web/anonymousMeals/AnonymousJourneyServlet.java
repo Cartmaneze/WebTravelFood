@@ -1,12 +1,9 @@
 package com.komarov.travelFood.web.anonymousMeals;
 
 import com.komarov.travelFood.AnonymousClientPool;
-import com.komarov.travelFood.controller.anonymous.ControllerAnonimMeal;
-import com.komarov.travelFood.controller.anonymous.DynamicControllerAnonimMeal;
 import com.komarov.travelFood.model.anonymous.AnonimJourney;
 import com.komarov.travelFood.model.anonymous.AnonimMealWithWeight;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,12 +24,10 @@ import java.util.stream.Collectors;
 public class AnonymousJourneyServlet {
 
     @Autowired
-    private ConfigurableApplicationContext springContext;
     private ControllerAnonimMeal controllerAnonimMeal;
 
     @PostConstruct
     public void init() {
-        controllerAnonimMeal = springContext.getBean(ControllerAnonimMeal.class);
         DynamicControllerAnonimMeal.addList(controllerAnonimMeal.getAll());
     }
 

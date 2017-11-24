@@ -1,7 +1,6 @@
 package com.komarov.travelFood.web.anonymousMeals;
 
 import com.komarov.travelFood.AnonymousClientPool;
-import com.komarov.travelFood.controller.anonymous.DynamicControllerAnonimMeal;
 import com.komarov.travelFood.model.Meal;
 import com.komarov.travelFood.model.anonymous.AnonimJourney;
 import com.komarov.travelFood.model.anonymous.AnonimMealWithWeight;

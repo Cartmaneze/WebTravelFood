@@ -8,13 +8,13 @@ import javax.persistence.*;
  * Created by Никита on 09.05.2017.
  */
 @NamedQueries({
-        @NamedQuery(name = Meal.DELETE, query = "DELETE FROM Meal m WHERE m.id=:id"),
+//        @NamedQuery(name = Meal.DELETE, query = "DELETE FROM Meal m WHERE m.id=:id"),
         @NamedQuery(name = Meal.GET_ALL, query = "SELECT m FROM Meal m")
 })
 @Entity
 @Table(name = "MEALS")
 public class Meal extends NamedEntity {
-    public static final String DELETE = "Meal.delete";
+//    public static final String DELETE = "Meal.delete";
     public static final String GET_ALL = "Meal.getAll";
 
     @Column(name = "calories")

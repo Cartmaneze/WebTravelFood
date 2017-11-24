@@ -9,11 +9,11 @@ import java.util.List;
  */
 public interface MealRepository {
 
-    Meal saveOrUpdate(Meal meal);
-
-    boolean delete(int id);
-
-    Meal get(int id);
+//    Meal saveOrUpdate(Meal meal);
+//
+//    boolean delete(int id);
+//
+//    Meal get(int id);
 
     List<Meal> getAll();
 }

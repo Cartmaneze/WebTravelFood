@@ -12,6 +12,16 @@ public class RootController {
 
     @GetMapping("/anonymousEnter")
     public String anonymEnter() {
-        return "startCounts";
+        return "anonymous/startCounts";
+    }
+
+    @GetMapping("/loginEnter")
+    public String loginEnter() {
+        return "autorized/login";
+    }
+
+    @GetMapping("/newUser")
+    public String createLogin() {
+        return "autorized/newLogin";
     }
 }

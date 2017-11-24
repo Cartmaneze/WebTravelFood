@@ -8,7 +8,7 @@ import java.util.List;
  * Created by Никита on 01.11.2017.
  */
 public interface ServiceDay {
-    Day save(Day meal, int journeyId);
+    Day save(Day day, int journeyId);
 
     boolean delete(int id, int journeyId);
 

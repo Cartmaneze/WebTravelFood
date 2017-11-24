@@ -8,6 +8,4 @@
 
     <context:component-scan base-package="com.komarov.**.service"/>
 
-    <context:component-scan base-package="com.komarov.**.controller"/>
-
 </beans>

@@ -10,7 +10,7 @@
 
 <h2>Список еды</h2>
 
-<table style="display: inline-block;">
+<table>
     <thead style="font-weight: bold">
     <td>Еда</td>
     <td>Ккал</td>
@@ -23,7 +23,7 @@
     </c:forEach>
 </table>
 
-<form method="post" action="meals">
+<form method="post" action="meals" style="display: inline-block;">
     <input type="hidden" name="menu" value="${menu}">
     <input type="hidden" name="hashCode" value="${hashCode}">
     <input type="hidden" name="isUpdating" value="${isUpdating}">

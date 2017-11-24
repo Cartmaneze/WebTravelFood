@@ -27,6 +27,18 @@ public class UserServiceTest extends AbstractServiceTest {
     }
 
     @Test
+    public void testGetByLoginPassword() throws Exception {
+        User user = service.getByLoginPassword(USER_1.getLogin(), USER_1.getPassword());
+        MATCHER.assertEquals(user, USER_1);
+    }
+
+    @Test
+    public void testGetByLogin() throws Exception {
+        User user = service.getByLogin(USER_1.getLogin());
+        MATCHER.assertEquals(user, USER_1);
+    }
+
+    @Test
     public void testGetAllJourneys() throws Exception {
         User user = service.get(100000);
         for (Journey journey : user.getJourneyList()) {

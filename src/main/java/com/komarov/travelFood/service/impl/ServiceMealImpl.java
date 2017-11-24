@@ -21,28 +21,28 @@ public class ServiceMealImpl implements ServiceMeal {
         this.mealRepository = mealRepository;
     }
 
-    @Override
-    public void saveOrUpdate(Meal meal) {
-        if (mealRepository.saveOrUpdate(meal) == null) {
-            System.out.println("not saved");
-        } else {
-            System.out.println("saved");
-        }
-    }
-
-    @Override
-    public void delete(int id) {
-        if (mealRepository.delete(id)) {
-            System.out.println("delete");
-        } else {
-            System.out.println("not delete");
-        }
-    }
-
-    @Override
-    public Meal get(int id) {
-        return mealRepository.get(id);
-    }
+//    @Override
+//    public void saveOrUpdate(Meal meal) {
+//        if (mealRepository.saveOrUpdate(meal) == null) {
+//            System.out.println("not saved");
+//        } else {
+//            System.out.println("saved");
+//        }
+//    }
+//
+//    @Override
+//    public void delete(int id) {
+//        if (mealRepository.delete(id)) {
+//            System.out.println("delete");
+//        } else {
+//            System.out.println("not delete");
+//        }
+//    }
+//
+//    @Override
+//    public Meal get(int id) {
+//        return mealRepository.get(id);
+//    }
 
     @Override
     public List<Meal> getAll() {
