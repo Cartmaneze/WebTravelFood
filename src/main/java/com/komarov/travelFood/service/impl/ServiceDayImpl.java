@@ -22,8 +22,8 @@ public class ServiceDayImpl implements ServiceDay {
     }
 
     @Override
-    public Day save(Day meal, int journeyId) {
-        return dayRepository.save(meal, journeyId);
+    public Day save(Day day, int journeyId) {
+        return dayRepository.save(day, journeyId);
     }
 
     @Override

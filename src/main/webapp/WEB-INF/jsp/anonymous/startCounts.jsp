@@ -12,7 +12,7 @@
 <form method="post" action="inputValues">
     <b>Введите количество походных дней</b>
     <br>
-    <input name="dayNumber" value="1"/>
+    <input name="dayNumber" value="3"/>
     <br>
     <b>Введите количество человек в походе</b>
     <br>

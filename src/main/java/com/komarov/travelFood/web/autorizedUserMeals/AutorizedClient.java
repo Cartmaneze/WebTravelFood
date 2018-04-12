@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 @Controller
 @RequestMapping
-public class AutorizedClientServlet extends AbstractUserController {
+public class AutorizedClient extends AbstractUserController {
 
     @PostMapping("/loginPassword")
     public String enterLoginPassword(HttpServletRequest request) {
@@ -29,7 +29,7 @@ public class AutorizedClientServlet extends AbstractUserController {
             return "autorized/login";
         } else {
             AutorizedClientPool.setInClientPool(request.getRemoteAddr(), user);
-            return "redirect:/autorized/autorJourneyDays";
+            return "redirect:/autorized/daysAndMWW";
         }
     }
 
@@ -45,7 +45,7 @@ public class AutorizedClientServlet extends AbstractUserController {
             return "autorized/newLogin";
         } else {
             AutorizedClientPool.setInClientPool(request.getRemoteAddr(), user);
-            return "redirect:/autorized/autorJourneyDays";
+            return "redirect:/autorized/daysAndMWW";
         }
     }
 

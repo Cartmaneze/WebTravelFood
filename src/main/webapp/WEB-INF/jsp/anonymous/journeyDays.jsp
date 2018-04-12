@@ -8,7 +8,6 @@
 </head>
 <body>
 <h2>Еда в поход</h2>
-<script type="text/javascript" src="resources/js/mealDatatables.js" defer></script>
 
 <button type="button"><a href="allFood">Посчитать вес всей еды</a></button>
 <br>
@@ -25,7 +24,7 @@
     </c:forEach>
 </table>
 
-<table id="datatable">
+<table>
     <thead>
     <caption>Завтрак</caption>
     <th>Удал</th>
